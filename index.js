@@ -1,6 +1,7 @@
 let myLeads = []
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
+const tabBtn = document.getElementById("tab-btn")
 const deleteBtn = document.getElementById("delete-btn")
 const ulEl = document.getElementById("ul-el")
 
@@ -10,7 +11,7 @@ const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 // only display leads if there are any saved in storage
 if (leadsFromLocalStorage) {
     myLeads = leadsFromLocalStorage
-    renderLeads()
+    render(myLeads)
 }
 
 inputBtn.addEventListener("click", function() {
@@ -20,7 +21,17 @@ inputBtn.addEventListener("click", function() {
     inputEl.value = ""
     // save leads to localStorage as str
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
-    renderLeads()
+    render(myLeads)
+})
+
+// grab the current tab from Google API
+tabBtn.addEventListener("click", function() {
+    // access both the chrome object & tabs object
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        render(myLeads)
+    })
 })
 
 // delete leads on double click
@@ -31,15 +42,15 @@ deleteBtn.addEventListener("dblclick", function() {
     ulEl.innerHTML = ""
 })
 
-function renderLeads() {
+function render(leads) {
     // empty str to hold HTML for list items
     let listItems = ""
     // loop through leads to add to unordered list
-    for (let i = 0; i < myLeads.length; i++) {
+    for (let i = 0; i < leads.length; i++) {
         listItems += `
             <li>
-                <a target='_blank' href='${myLeads[i]}'>
-                    ${myLeads[i]}
+                <a target='_blank' href='${leads[i]}'>
+                    ${leads[i]}
                 </a>
             </li>
         `
