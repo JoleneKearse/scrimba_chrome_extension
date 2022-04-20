@@ -38,11 +38,11 @@ html {
 
 body {
     min-height: 100vh;
-    width: 100%
+    width: 100%;
 }
 
 img {
-    max-width: 100%;
+    max-width: 95%;
     display: block;
     transform: scale(1.25);
 }
@@ -220,4 +220,51 @@ span {
 
 .gap-fix {
     transform: scale(1);
+}
+
+/* ---------- ACCORDIAN MENU ---------- */
+.section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--gap-med);
+}
+.accordian {
+    font-family: inherit;
+    font-size: clamp(1.4rem, -0.6rem + 6vw, 2.75rem);
+    background-color: #E2F7D326;
+    color: var(--clr-white);
+    border-radius: 1rem;
+    box-shadow: .3rem .3rem #4b603c33;
+    padding-left: .85rem;
+}
+
+.accordian > span {
+    font-family: 'Changa One', cursive;
+    color: #47c3ff;
+}
+
+.study-note {
+    font-size: clamp(1.15rem, -0.4rem + 4.25vw, 2.5rem);
+    background-color: #13925433;
+    padding-left: clamp(2rem, 3.75rem, 10rem);
+}
+
+.accordian:hover {
+    cursor: pointer;
+}
+
+.arrow {
+    font-weight: bolder;
+}
+
+.arrow:hover {
+    cursor: pointer;
+}
+
+.content {
+    display: none;
+}
+
+.active {
+    display: block;
 }
