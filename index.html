@@ -1,14 +1,374 @@
-<html>
-    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
-        <input type="text" id="input-el">
-        <button id="input-btn">SAVE INPUT</button>
-        <button id="tab-btn">SAVE TAB</button>
-        <button id="delete-btn">DELETE ALL</button>
-        <ul id="ul-el">
-        </ul>
-        <script src="index.js"></script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Roboto+Mono:ital,wght@0,400;1,500&family=Roboto+Slab:wght@100;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <title>Chrome Extension Guide</title>
+</head>
+<body>
+    <header>
+        <h1>Chrome Extension Step-By-Step</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>1: Set up the HTML</h2>
+            <p>In lesson 2, <a href="https://scrimba.com/learn/learnjavascript/add-button-and-input-tag-coc2b456499fbdd224733183e" target="_blank"><b>Add Button & Input Tag</b></a>, we just set it up as a regular HTML page!</p>
+            <p>So in the <span class="code">body</span> tag, we simple add <span class="code">input</span> and <span class="code">button</span> elements, with <b>id's</b> to access via JavaScript later on.</p>
+            <p>The result:</p>
+            <img src="img/l2output.png" class="result" alt="">
+            <p>The code:</p>
+            <img src="img/l2input.png" class="html gap-fix" alt="">
+            <p>Then, style to your heart's content!</p>
+        </section>
+
+        <section>
+            <h2>2: Make the Button Work with JS</h2>
+            <p>We get to our first JavaScript in lesson 4, <a href="https://scrimba.com/learn/learnjavascript/make-the-input-button-work-with-onclick-co48f417a81a9731509f01933" target="_blank"><b>Make the Input Button Work with <i>onclick</i></b></a>.</p>
+            <p><i>Remember to link the <span class="code">.js</span> file in the HTML!</i></p>
+            <p>While there add the functionality to the button element:</p>
+            <code><span class="code"><span class="syntax">button</span> id="input-btn" <b>onclick="saveLead()"</b></span></code>
+            <p>We begin the JS file by creating the function statement.</p>
+        </section>
+
+        <section>
+            <h2>3: Make the Button 'Better'</h2>
+            <p>In lesson 5, <a href="https://scrimba.com/learn/learnjavascript/refactor-to-addeventlistener-co8ce4dcf8add1c0072d608fa" target="_blank"><b>Refactor to <i>addEventListener</i></b></a>, we change how the button is activated. <i>This is the 'professional' way.</i></p>
+            <p>In our JS, we grab the id:</p>
+            <code><span class="code"><span class="syntax">let</span> inputBtn = document.getElementById(<span class="format">"input-btn"</span>)</span></code>
+            <p>This way we can remove the <span class="code">onclick</span> from our HTML, so our JS handles all the event listeners. <i>And our HTML looks that little bit cleaner!</i></p>
+            <img src="img/l5input.png" class="javascript" alt="">
+        </section>
+
+        <section>
+            <h2>4: Begin Work on the Input Array</h2>
+            <p>On to lesson 8, <a href="https://scrimba.com/learn/learnjavascript/create-the-myleads-array-and-inputel-cobdc4921bc7ab475bc52cd59" target="_blank"><b>Create the <i>myLeads</i> Array & <i>inputEl</i></b></a>.</p>
+            <p>Here we set up the infastructure for a working extension!</p>
+            <p>Two variables are needed, to save the leads and to accept user input.</p>
+            <p>Here you consider which variables should be <span class="code">let</span> or <span class="code">const</span>, meaning 'decide which ones will change in the program.'</p>
+            <p>Our button declaration should be changed, as seen in the following code:</p>
+            <img src="img/l8input.png" class="javascript" alt="">
+        </section>
+
+        <section>
+            <h2>5: Add New Leads to the Array</h2>
+            <p>Skipping to lesson 10, <a href="https://scrimba.com/learn/learnjavascript/push-to-the-myleads-array-co2a74222ac74938cefd7caf1" target="_blank"><b>Push to the <i>myLeads</i> Array</b></a>, we begin adding the leads so numerous ones can be displayed.</p>
+            <img src="img/l10input.png" class="javascript" alt="">
+            <p>This will keep pushing the same hard-coded value into the array. So improvement is needed...</p>
+        </section>
+
+        <section>
+            <h2>6: Actually Use the User Input</h2>
+            <p>Lesson 11, <a href="https://scrimba.com/learn/learnjavascript/push-the-value-from-the-input-field-cod93488d8dd146bbe2d11a0f" target="_blank"><b>Push the Value from the Input Field</b></a>, makes our extension a lot more useful!</p>
+            <p>We access the value from the input thusly:</p>
+            <code><span class="code">myLeads.push(<b>inputEl.value</b>)</span></code>
+        </section>
+
+        <section>
+            <h2>7: Implement a Loop for the Leads</h2>
+            <p>On to lesson 12, <a href="https://scrimba.com/learn/learnjavascript/use-a-for-loop-to-log-out-leads-co25149dc879b0bcc7e1fac8a" target="_blank"><b>Use a <i>for</i> Loop to Log Out Leads</b></a>, we begin to show the user their leads!</p>
+            <p>Since the MVP requires us to display the leads to the user, we need to begin to show them one-by-one.</p>
+            <p>What better way than using a <span class="code">for</span> loop?</p>
+            <img src="img/l12input.png" class="javascript" alt="">
+            <p><i>Of course, I forgot to write <span class="code">myLeads[i]</span>, when reviewing! I consistently do this and wonder when I'll finally remember!</i></p>
+        </section>
+
+        <section>
+            <h2>8: Get Ready to Display the Leads as a List</h2>
+            <p>Lucky lesson 13, <a href="https://scrimba.com/learn/learnjavascript/create-the-unordered-list-co8c94a4b8a4636bb74711f69" target="_blank"><b>Create the Unordered List</b></a>, starts work on how the leads will be displayed under the Submit button.</p>
+            <p>This lesson simply adds the element to the HTML:</p>
+            <img src="img/l13inputHTML.png" class="html" alt="">
+            <p>And grabs the element in JavaScript:</p>
+            <code><span class="code"><span class="syntax">const</span> ulEl = document.getElementById(<span class="format">"ul-el"</span>)</span></code>
+        </section>
+
+        <section>
+            <h2>9: Put the Leads in the List</h2>
+            <p>Moving on to lesson 14, <a href="https://scrimba.com/learn/learnjavascript/render-the-leads-in-the-unordered-list-co8f34f73abf41c76417dae76" target="_blank"><b>Render the Leads in the Unordered List</b></a>, we start out 'wrongly' showing them as plain text to be fixed later.</p>
+            <p>Remember to use <span class="code"><b>+</b>=</span> so it doesn't clear out the <span class="code">textContent</span> each time!</p>
+            <img src="img/l14input.png" class="javascript" alt="">
+            <p>And this is why this is the wrong way! Although we are getting there...</p>
+            <img src="img/l14output.png" class="result" alt="">
+        </section>
+
+        <section>
+            <h2>10: Make Them an Actual List</h2>
+            <p>In lesson 15, we <a href="https://scrimba.com/learn/learnjavascript/how-to-render-li-elements-with-innerhtml-co45643f7acb5a22fc0e09451" target="_blank"><b>Render <i>&lt;li&gt;</i> Elements with <i>innerHTML</i></b></a>, meaning we use JavaScript to inject additonal HTML markup when our <span class="code">index.html</span> file is read by the browser.</p>
+            <p>These two lessons demonstrate the difference between <span class="code">textContent</span> & <span class="code">innerHTML</span>.</p>
+            <p>The former is <i>less labour-intensive</i> for our browsers, but they interpret the given value literally. So <span class="code">&lt;li&gt;</span> would show the <b>list item</b> tag directly to the user.</p>
+            <p>The latter can manipulate the <strong><abbr title="Document Object Model">DOM</abbr></strong> to create new HTML content on the page!</p>
+            <img src="img/l15input.png" class="javascript" alt="">
+            <p>You can also use <b>back tics</b> to clean it up a bit:</p>
+            <code><span class="code">`&lt;li&gt; ${myLeads[i]} &lt;li&gt;`</span></code>
+        </section>
+
+        <section>
+            <h3>Alternative to <i>innerHTML</i></h2>
+            <p>Cruising along to lesson 19, <a href="https://scrimba.com/learn/learnjavascript/use-createelement-and-append-instead-of-innerhtml-co64f4984a41b95b3d8fdd905" target="_blank"><b>Use <i>createElement()</i> and <i>append()</i> instead of <i>innerHTML</i></b></a>, we see a different method. <i>It is important to remember to choose the best tool for each project.</i></p>
+            <img src="img/l19input.png" class="javascript" alt="">
+            <p>We re-write line 13 in the loop as three elements:</p>
+            <ul>
+                <li>Create a new <span class="code">&lt;li&gt;</span> that will be a constant value each round of the loop,</li>
+                <li>Add the <span class="code">textContent</span> to each,</li>
+                <li><span class="code">append()</span> to the unordered list</li>
+            </ul>
+            <p><i>It is up to you to decide which is more readable!</i></p>
+        </section>
+
+        <section>
+            <h2>11: Improve the Performance</h2>
+            <p>Lesson 20, <a href="https://scrimba.com/learn/learnjavascript/improving-the-performance-of-our-app-co033484a8165a2a0111f1358" target="_blank"><b>Improving the Performance of Our App</b></a>, does just that.</p>
+            <p>Rather than manipulating the <abbr title="Document Object Model">DOM</abbr> each time with <span class="code">innerHTML</span></p>
+            <img src="img/l20input.png" class="javascript gap-fix" alt="">
+            <p>First, we create a changable variable with an empty string to accept each <span class="code">listItems</span>.</p>
+            <p>Second, we change <span class="code">ulEl.innerHTML</span> to that variable.</p>
+            <p>Third, outside the loop, we have <span class="code">ulEl</span> access the <abbr title="Document Object Model">DOM</abbr> once with <span class="code">innerHTML</span> by adding the <span class="code">listItems</span>.</p>
+        </section>
+
+        <section>
+            <h2>12: Show the User Data</h2>
+            <p>In lesson 21, <a href="https://scrimba.com/learn/learnjavascript/create-the-render-function-co93a49719966d5c97b34dd29" target="_blank"><b>Create the <i>render</i> Function</b></a>, we start showing the user-entered data rather than the hard-coded values.</p>
+            <p>Working through the <b>logic</b>:</p>
+                <ul>
+                    <li>The user will enter a lead, which will be pushed to the <span class="code">myLeads</span> array on <i>line 1</i>, on the button click on <i>line 6</i></li>
+                    <li>Then when we call our new function on <i>line 9</i></li>
+                    <li>Which will activate the loop on <i>line 15</i>, adding each lead in <span class="code">&lt;li&gt;</span> tags, saved in <span class="code">listItems</span> on <i>line 14</i></li>
+                    <li>Finally, the code will be added to the <span class="code">&lt;ul&gt;</span> through <abbr title="Document Object Model">DOM</abbr> manipulation on <i>line 18</i></li>
+                </ul>
+                <p><b>Here's our code to-date:</b></p>
+                <img src="img/l21input.png" class="javascript gap-fix" alt="">
+        </section>
+
+        <section>
+            <h2>13: Get Ready for More Data</h2>
+            <p>Lesson 22, <a href="https://scrimba.com/learn/learnjavascript/clear-the-input-field-co5404b5e998b95769379d323" target="_blank"><b>Clear the Input Field</b></a>, shows us how to clear the input field, so the user can easily enter more leads.</p>
+            <p>Within our <b>Event Listener</b> and before <span class="code">renderLeads()</span>, we simply add:</p>
+            <code><span class="code">inputEl.value = ""</span></code>
+        </section>
+
+        <section>
+            <h2>14: Make the Leads Hypertext</h2>
+            <p>In lesson 23, <a href="https://scrimba.com/learn/learnjavascript/add-the-a-tag-cod9c432487b5108bdbfe13a0" target="_blank"><b>Add the <i>&lt;a&gt;</i> Tag</b></a>, we make the list items more user-friendly.</p>
+            <p>We will wrap the text of the list item in an <span class="code">&lt;a&gt;</span> tag, so it is clickable!</p>
+            <p><i>Remember to add the <span class="code">href</span> and have it open in a new tab!</i></p> 
+            <p><i> Another point is to use <b>single quotes</b> for the property values, because we have been using <b>double quotes</b> when adding the HTML elements in the loop - you don't want to 'exit' out of the concatenated string!</i></p>
+            <p>This is a tad complicated, because we would first expect to write:</p>
+            <code><span class="code">listItems 
+            <span class="syntax">+=</span> 
+            <span class="format">"&lt;li&gt;&lt;a href='#'&gt;</span> <span class="syntax">+</span> myLeads[i] <span class="syntax">+</span> <span class="format">"&lt;&#47;a&gt;&#47;&lt;li&gt;"</span></span></code>
+            <p><b>But</b> we need the <span class="code">href</span> to reference a JavaScript variable.</p>
+            <p>So we use more concatenation! We also add the new tab functionality in the following super-long code:</p>
+            <img src="img/l23input.png" class="javascript" alt="">
+        </section>
+
+        <section>
+            <h2>15: Switch to Template Literals</h2>
+            <p>Lesson 24, <a href="https://scrimba.com/learn/learnjavascript/template-strings-co67b40c89e401a9f28ead9aa" target="_blank"><b>Template Strings</b></a>, demonstates an easy way to do away with all the concatenation.</p>
+            <img src="img/l24input.png" class="javascript gap-fix" alt="">
+            <p>It makes it much easier to read and allows you to see the syntax highlighting.</p>
+        </section>
+
+        <section>
+            <h2>16: Prepare to Deploy!!!!!</h2>
+            <p>Skipping the styling of the links, we hop over to lesson 30, <a href="https://scrimba.com/learn/learnjavascript/preparing-the-deployment-co9a446609df2474539d99006" target="_blank"><b>Preparing the Deployment</b></a>, to finally see our beautiful extension sitting in our browser!</p>
+            <p>You will notice that the <strong>Scrimba FILE EXPLORER</strong> has 2 new files: <span class="code">icon.png</span> and a <abbr title="JavaScript Object Notation">JSON</abbr> file.</p>
+            <img src="img/l30JSON.png" class="gap-fix" alt="">
+            <p>These files are used to store and send data by a lot of programming languages. For instance, they are often used to send data from a server to a client <i>(i.e. - from wherever your extension's data is stored to your user in their browser)</i>.</p>
+            <p>This is used to configure our app and it's provide <strong>metadata</strong>.</p>
+            <p>So <strong>Google Chrome</strong> will read this file to find the name, <i>(<span class="code">"name: "Leads tracker:,)</span></i>, & the version number, <i>(<span class="code">"version": "1.1",</span>)</i>.</p>
+            <p><i>Note: you do need to use double quotes around each <b>key</b> and <b>value</b></i>.</p>
+            <p>We also see <span class="code">"manifest_version": 3,</span> which identifies the file version number.</p>
+            <p>The most important part is <span class="code">"action"</span>, which tells the browser what happens when our user clicks on the browser toolbar.</p>
+            <ul>
+                <li><span class="code">"default_icon": "icon.png"</span> will, <i>not surprisingly</i>, tell the browser which icon to use, &</li>
+                <li><span class="code">"default_popup": "index.html"</span> will be the little window we've been building.</li>
+            </ul>
+            <p>There is one issue - setting the dimensions - as it will open up to only contain the content, <i>so really just a little bigger than the button</i>.</p>
+            <p>So in our CSS, we set:</p>
+            <pre><code><span class="code">body { min-width: 400px; }</span></code></pre>
+            <p>Now we download our code as <span class="code">.zip</span>, by using the Scrimba settings button, and saving it to a folder.</p>
+        </section>
+
+        <section>
+            <h2>17: Deploy!!!!!</h2>
+            <p>Lesson 31, <a href="https://scrimba.com/learn/learnjavascript/deploying-the-chrome-extension-coa574dda96a591412a8b7cff" target="_blank"><b>Deploying the Chrome Extension</b></a>, includes the steps for doing just that!</p>
+            <p>Go to <a href="chrome://extensions/" target="_blank">Chrome Extensions</a> and flip the 'Developer Mode' toggle in the top-right corner.</p>
+            <img src="img/l31ext.png"  class= "gap-fix" alt="">
+            <p>Then click the '<b>Load unpacked</b>' button. This brings up the File Explorer, so choose your folder and hit '<b>Select</b>.'</p>
+            <p>Boom! If you check your extensions, you'll see your amazing extension!</p>
+        </section>
+
+        <section>
+            <h3>localStorage</h3>
+            <p>Our wonderful app is alive in our browser's toolbar, but doesn't store data from one session to another - in comes <i>localStorage</i>!</p>
+            <p>You can inspect this in DevTools from the 'Application' tab.</p>
+            <p>Click on 'Local Storage' and the site name, gives you <strong>key-value</strong> pairs.</p>
+            <p>The values are unique to you. You can test this by opening the <strong>console</strong> and typing <span class="code">localStorage.clear()</span>.</p>
+            <p>You can even add stuff here! Enter <span class="code">localStorage.setItem("myLeads", "website"</span>. Going back to 'Local Storage,' you will see this as a new key-value pair.</p>
+        </section>
+
+        <section>
+            <h3>More on <i>localStorage</i></h3>
+            <p>In lesson 33, <a href="https://scrimba.com/learn/learnjavascript/your-first-localstorage-coaa54cbd950661b84f5857b7" target="_blank"><b>Your first <i>localStorage</i></b></a>, we see how we can persistently store & retrieve data.</p>
+            <p>We will add a key-value pair to our local storage.</p>
+            <img src="img/l33input1.png" class="javascript" alt="">
+            <p>We can delete it, then refresh the browser, <b>but</b> still get it back by passing the key.</p>
+            <img src="img/l33input2.png" class="javascript" alt="">
+            <p>When you use <span class="code">localStorage.clear()</span> and pass in the name, it returns <span class="code">null</span>.</p>
+        </section>
+
+        <section>
+            <h3>Understanding Arrays in <i>localStorage</i></h3>
+            <p>On to lesson 34, <a href="https://scrimba.com/learn/learnjavascript/storing-arrays-in-localstorage-co7714fd8a808e480368eb207" target="_blank"><b>Storing Arrays in <i>localStorage</i></b></a>.</p>
+            <p><i>Note that this is actually a <strong>method</strong> on an <strong>object</strong>: <span class="code">Window.localStorage</span>. But a good quirk of JavaScript is it's not necessary to write <span class="code">Window</span>.</i></p>
+            <p>Everything stored in <span class="code">localStorage</span> must be a <strong>string</strong>. But we are using a <span class="code">myLeads</span> array. So how do we do that?</p>
+            <p>We must use <span class="code">JSON.stringify()</span> & <span class="code">JSON.parse()</span>.</p>
+            <p>Let's work out the <strong>logic</strong> of this issue:</p>
+            <ul>
+                <li>Turn the array into a string with <b>back tics</b>
+                <img src="img/l34inputStr.png" class="javascript" alt="">
+                </li>
+                <li>But then we can't add new items to our array using <span class="code">push()</span> as this only works on arrays, not strings.</li>
+                <li>So to use this method, we first need to <strong>parse</strong> it:
+                <img src="img/l34inputboth.png" class="javascript gap-fix"  alt="">
+                </li>
+            </ul>
+            <p>This has some extra steps here, so I'll show the lesson's challenge:</p>
+            <img src="img/l34inputoutput.png" class="javascript gap-fix"  alt="">
+        </section>
+
+        <section>
+            <h2>18: Save Our Leads</h2>
+            <p>In lesson 35, <a href="https://scrimba.com/learn/learnjavascript/save-the-leads-to-localstorage-coddd43729f1136a310c20b6c" target="_blank"><b>Save the Leads to <i>localStorage</i></b></a>, we apply our new knowledge to our app.</p>
+            <p>In our Event Listener beginning on <i>line 6</i>, we wait until we've cleared our input field on <i>line 8</i>, then write:</p>
+            <img src="img/l35input.png" class="javascript" alt="">
+            <p>So this saves the item to <i>localStorage</i> as a key-value pair via <span class="code">setItem()</span>, and as a string with <span class="code">JSON.stringify()</span>.</p>
+        </section>
+
+        <section>
+            <h2>19: Access Our Leads</h2>
+            <p>Now lesson 36, <a href="https://scrimba.com/learn/learnjavascript/get-the-leads-from-localstorage-cof6545408c5599b0edb3f958" target="_blank"><b>Get the Leads from <i>localStorage</i></b></a>, will retrieve the saved leads to show the user.</p>
+            <p>This code will go into <i>localStorage</i>, fetch the leads, and display them.</p>
+            <img src="img/l36input.png" 
+            class="javascript" alt="">
+            <ul>
+                <li>Get the leads from <i>localStorage</i> using the saved key, <span class="code">"myLeads"</span></li>
+                <li>Turn it back into an array with <span class="code">JSON.parse()</span></li>
+                <li>Then save it to a variable that we can change, <span class="code">leadsFromLocalStorage</span></li>
+            </ul>
+            <p>We do this above the button Event Listener, so it can retrieve any previous leads before rendering out the newly entered url's.</p>
+            <p>If there were no leads entered, the <span class="code">console.log</span> would return <span class="code">null</span>, which is a <strong>falsy</strong> value. <a href="https://scrimba.com/learn/learnjavascript/truthy-and-falsy-values-cKrLayTP" target="_blank">Lesson 37</a> goes more into <strong>Truthy</strong> and Falsy values.</p>
+        </section>
+
+        <section>
+            <h2>20: Check If Leads Should Be Displayed</h2>
+            <p>On to lesson 39, <a href="https://scrimba.com/learn/learnjavascript/checking-localstorage-before-rendering-co4424ccb853621804fd3b40a" target="_blank"><b>Checking <i>localStorage</i> Before Rendering</b></a>, we use an <strong>if statement</strong> to check for Truthy or Falsy, and only call <span class="code">renderLeads()</span> when <b>true</b>.</p>
+            <img src="img/l39input.png" class="javascript gap-fix" alt="">
+        </section>
+
+        <section>
+            <h2>21: Create the Delete Button</h2>
+            <p>After styling the delete button, lesson 41, <a href="https://scrimba.com/learn/learnjavascript/make-the-delete-button-work-co58f4ab8a3ae3336a2a9a2f5" target="_blank"><b>Make the Delete Button Work</b></a>, gives users the ability to get rid of spent leads.</p>
+            <img src="img/l40output.png" class="result gap-fix" alt="">
+            <p>This is pretty much a reverse of <span class="code">renderLeads()</span>.</p>
+            <ul>
+                <li>Remember to grab the id on <i>line 6</i></li>
+                <li>Add the <strong>Event Listener</strong> on <i>line 17</i>, but with a twist!</li>
+                <li>We use <span class="code">"dblclick"</span> rather than our much loved <span class="code">"click"</span> event.</li>
+                <li>Then we just clear everything out:
+                    <ul>
+                        <li><i>localStorage</i> on <i>line 19</i></li>
+                        <li>The <span class="code">myLeads</span> array on <i>line 20</i>, and</li>
+                        <li>The HTML rendered to the DOM on <i>line 21</i> or <i>22</i>.</li>
+                    </ul>
+                </li>
+            </ul>
+            <img src="img/l41input.png" class="javascript gap-fix" alt="">
+        </section>
+
+        <section>
+            <h2>22: Refactor for Dynamism</h2>
+            <p>With lots of <strong>parameter</strong> v.s. <strong>argument</strong> practice, we arrive at lesson 48, <a href="https://scrimba.com/learn/learnjavascript/refactor-renderleads-to-use-a-parameter-co12a49a7aabb859488137c35" target="_blank"><b>Refactor <i>renderLeads()</i> To Use A Parameter</b></a>.</p>
+            <p>Really it is just changing all but the first instance of <span class="code">myLeads</span> to <span class="code">leads</span>. Anywhere but the <strong>variable assignment</strong> or anywhere it is passed as a parameter is changed, except where the code <b>explicitly</b> reassigns it. <i>It can be a bit confusing, so check out the vid!</i></p>
+        </section>
+
+        <section>
+            <h2>23: Add a Save Tab Button Using an API</h2>
+            <p>The next four lessons cover adding the ability to save the current Chrome tab directly in the extension.</p>
+            <p>This is so <b>awesome</b>, but a tad <b>confusing</b> as it uses an <strong><abbr title="Application Programming Interface">API</abbr></strong>! So this step comprises four lessons.</p>
+
+            <p>In Lesson 49, <a href="https://scrimba.com/learn/learnjavascript/create-the-tabbtn-co0a1443da9c748713a0060f6" target="_blank"><b>Create the Tab Button</b></a>, we, well, create the tab button.</p>
+            <img src="img/l49html.png" class="html" alt="">
+            <p>Then we wire it up to log <i>Per</i>'s <b>LinkedIn</b> page to the console.</p>
+            <img src="img/l49result.png" class="result gap-fix" alt="">
+            <p><i>Yes, it does sound a bit strange, but...</i> it demonstrates how to access an <strong>object's key within an array using bracket and dot notation</strong>.</p>
+            <img src="img/l49input.png" class="javascript gap-fix" alt="">
+
+            <p>Cool... but we haven't saved it yet, so in lesson 50, <a href="https://scrimba.com/learn/learnjavascript/save-the-tab-url-coc6f4a948883b3e1b65db528" target="_blank"><b>Save the Tab URL</b></a>, we rectify that!</p>
+            <p>Not so surprising, but this is pretty much the same as the <span class="code">inputBtn</span>!</p>
+            <ul>
+                <li><span class="code">myLeads.push("<b>tabs[0].url</b>")</span> to push the object key's value, which is the first, <i>and only array item</i>, to the <span class="code">myLeads</span> array,</li>
+                <li>Save the item to <span class="code">localStorage</span> as a key-value pair, which both need to be strings using <span class="code">localStorage.setItem(<span class="format">"myLeads"</span>, JSON.stringify(myLeads) )</span></li>
+                <li>Then re-render with <span class="code">render(myLeads)</span>.</li>
+            </ul>
+
+            <p>Lesson 51 introduces the API to get the tab, <a href="https://scrimba.com/learn/learnjavascript/how-to-get-the-current-tab-co3fe46ddb54b980828b116a9" target="_blank"><b>How To Get the Current Tab</b></a>.</p>
+            <p>The first task is deciding where to 'talk' to the <strong>Google Chrome API</strong>. Which, <i>of course</i>, is within the Event Listener.</p>
+            <p>Okay, but how?</p>
+            <p>Searching for "<i>google chrome get current tab</i>" leads us to the <a href="https://developer.chrome.com/docs/extensions/reference/tabs/" target="_blank">docs</a> with lots of information. The most pertinent parts being:</p>
+            <ul>
+                <li>modifications to the <span class="code">manifest.JSON</span> file, and...</li>
+                <li>Well, we want the actual <b>code</b>, but get a lot of confusing stuff, so...</li>
+            </ul>
+            <p>We can fall back to the <strong>Stack Overflow</strong> result in our prior search, where a real person already asked our question and a real person answered.</p>
+            <p>The answers are still quite confusing for a beginner, <i>like myself</i>, but, fortunately, this is a tutorial lead by Per and he gave us a hint back in lesson 49. <i>Remember the <span class="code"><span class="syntax">const</span> tabs</span> leading to a URL?</i> We find an answer that looks similar to that code, and simply copy & paste it!</p>
+            <img src="img/l51inputex.png" class="javascript gap-fix" alt="">
+            <p><i>Lines 23-24</i> look quite a bit like our <span class="code">myLeads.push("<b>tabs[0].url</b>")</span>, so we can guess that the code on <i>line 20</i> just may be what we need to access the API to snag our tab!</p>
+
+            <p>Lesson 52, <a href="https://scrimba.com/learn/learnjavascript/use-the-chrome-api-to-get-the-tab-cof4d4a9b8e6dea505a0b1679" target="_blank"><b>Use the Chrome API To Get the Tab</b></a>, breaks down this perplexing line.</p>
+            <img src="img/l52inputline20.png" class="javascript" alt="">
+            <ul>
+                <li><span class="code">chrome</span> is an <strong>object</strong> & <strong>variable</strong>, which we will have access to when running our extension. This variable has access to a...</li>
+                <li><span class="code">tabs</span> key, which is also an <b>object</b> that has a method...</li>
+                <li><span class="code">query()</span>, which 'talks' to <i>chrome</i> and 'asks' to see it's <i>tabs</i>, or, more specifically, a specific one</li>
+                <li>We point to the unique one we want with an <b>object</b>:
+                <img src="img/l52object.png" class="javascript" alt="">
+                <ul>
+                    <li><span class="code">{active: true}</span> means the <b class="bold">tab</b>, which is being viewed in our browser
+                    <img src="img/l52tab.png" alt=""></li>
+                    <li><span class="code">{currentWindow: true}</span> says only the focused <b class="bold">window</b>, if more than one are open on the desktop
+                    <img src="img/l52window.png" class="gap-fix" alt=""></li>
+                </ul>
+                </li>
+                <li>Then we declare the <strong>function() {}</strong>. This will be triggered when Chrome finds the active tab in the current window & will it will give us a <b class="bold">tabs</b> variable: <span class="code"><span class="syntax">function</span>(tabs)</span></li>
+            </ul>
+            <p>Now that we have that line broken down, we can put our previous code inside the function:</p>
+            <img src="img/l52inputfinal.png" class="javascript gap-fix" alt="">
+            <p><i>Remember to remove the hard-coded variable pointing to Per's LinkedIn page! So they won't conflict when JavaScript is searching for 'tabs.'</i></p>
+
+            <p>There is another step here - adding to the <span class="code">manifest.json</span> file.</p>
+            <img src="img/l52manifest.png" class="gap-fix" alt="">
+        </section>
+
+        <section>
+            <h2>24: Send It Out Into the Wild!!!</h2>
+            <p>The final lesson 53, <a href="https://scrimba.com/learn/learnjavascript/deploy-the-final-version-coc8640b4ab7ea074c56f6bdc" target="_blank"><b>Deploy the Final Version</b></a>, gets our extension running!</p>
+            <ul>
+                <li>Grab the updated files either in your File Explorer or by downloading the <span class="code">.zip</span> file from the scrim's settings.</li>
+                <li>Go back to the <a href="chrome://extensions/" target="_blank">Chrome Extensions</a> page.</li>
+                <li>On our extension's box, click the <b class="bold">Details</b> button
+                <img src="img/l53details.png" class="gap-fix" alt=""></li>
+                <li>Then click the <b class="bold">Update</b> button!
+                <img src="img/l53update.png" class="gap-fix" alt=""></li>
+            </ul>
+            <p><b>Hurray!</b> We've finally completed our <strong>Chrome Extension: Leads Tracker</strong>!!!!!</p>
+        </section>
+    </main>
+</body>
 </html>
